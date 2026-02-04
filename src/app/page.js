@@ -40,11 +40,21 @@ export default function CoffeeShopManager() {
 
         // ========================================
         // 🎯 EXERCISE useEffect 2: Load saved order from localStorage on Mount
+        const savedOrderCount = localStorage.getItem('coffeeShop_orderCount');
+        if (savedOrderCount !== null) {
+            setCustomerCount(parseInt(savedOrderCount, 10));
+            console.log('✅ Loaded customer count:', savedOrderCount);
+        }
+        // Load orders
+        const savedOrders = localStorage.getItem('coffeeShop_orders');
+        if (savedOrders) {
+            setOrders(JSON.parse(savedOrders));
+            console.log('✅ Loaded orders:', savedOrders);
+        }
         // ========================================
         // Hint: Load orders with localStorage.getItem('coffeeShop_orders')
         // Hint: Check if the values exist before setting state (if (savedValue) { ... })
         // Hint: Remember to parse the JSON string for orders before use setOrders: JSON.parse(savedOrders)
-
     }, []);
 
     // ========================================
@@ -59,6 +69,12 @@ export default function CoffeeShopManager() {
     // ========================================
     // 🎯 EXERCISE useEffect 1: Auto-save Orders
     // ========================================
+    useEffect(() => {
+        localStorage.setItem('coffeeShop_orders', JSON.stringify(orders));
+        console.log('💾 Orders saved to localStorage:', orders);
+    }, [orders]);
+
+
     // TODO: Create a useEffect that saves orders to localStorage whenever orders change
     // Hint: Use localStorage.setItem('coffeeShop_orders', JSON.stringify(orders))
     // Hint: The dependency array should include [orders]

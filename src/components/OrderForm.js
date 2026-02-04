@@ -16,8 +16,12 @@ export default function OrderForm({ orders, setOrders }) {
         // ========================================
         // 🎯 EXERCISE useState 1: Reset Coffee Name
         // ========================================
+        const [coffeeName, setCoffeeName] = useState(0);
+        setCoffeeName('');
+
         // TODO: Reset the coffeeName back to empty string after adding order
         // Hint: Use setCoffeeName('') to clear the input field
+
 
         // ========================================
         // 🎯 EXERCISE useState 2: Update Order Array
@@ -26,6 +30,11 @@ export default function OrderForm({ orders, setOrders }) {
         // Hint: Use the spread operator to create a new array: [...orders, coffeeName]
         // Hint: Call setOrders with the new array
         // Hint: Add a console.log to see when an order is added
+        const newOrders = [...orders, coffeeName];
+        setOrders(newOrders);
+        console.log('Order added:', coffeeName);
+
+     
     };
 
     return (
